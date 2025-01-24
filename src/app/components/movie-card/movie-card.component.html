@@ -1,0 +1,12 @@
+<div class="relative group bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform transform hover:scale-105">
+  <img [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="{{ movie.title }}"
+       class="w-full h-[450px] object-cover">
+  <div class="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+    <h3 class="text-lg font-bold">{{ movie.title }}</h3>
+    <p class="text-yellow-400">⭐ {{ movie.vote_average }}</p>
+    <button (click)="onMovieClick()"
+            class="mt-3 bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-lg transition">
+      Ver Detalles
+    </button>
+  </div>
+</div>
