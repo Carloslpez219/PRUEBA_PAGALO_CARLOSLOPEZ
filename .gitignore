@@ -1,0 +1,55 @@
+# Node modules
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# Angular build outputs
+dist/
+out-tsc/
+coverage/
+
+# IDEs y editores
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Archivos de configuración específicos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Logs y reportes
+*.log
+logs/
+*.log.*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Archivos temporales y cachés
+.tmp/
+temp/
+.cache/
+.eslintcache
+.angular/
+.npm/
+.bower_components/
+
+# Archivos de testing
+karma-coverage/
+test-results/
+
+# Ambientes y variables
+*.env
+*.local
+*.secret
+*.private
+.env.local
+.env.*.local
+firebase-debug.log
+firebase-debug.*
