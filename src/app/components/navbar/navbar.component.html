@@ -1,8 +1,12 @@
 <nav class="bg-gray-900 text-white py-4 px-6 flex justify-between items-center shadow-lg dark:bg-gray-800">
     <div class="flex items-center space-x-6">
       <h1 class="text-2xl font-bold text-indigo-500 cursor-pointer">🎬 CineApp</h1>
-      <a routerLink="/movies-now-playing" class="hover:text-indigo-400 transition">Cartelera</a>
-      <a routerLink="/movies-top-rated" class="hover:text-indigo-400 transition">Top Rated</a>
+      <button (click)="navigateTo('movies-now-playing')" class="hover:text-indigo-400 transition">
+        Cartelera
+      </button>
+      <button (click)="navigateTo('movies-top-rated')" class="hover:text-yellow-400 transition">
+        Top Rated
+      </button>
     </div>
   
     <div class="flex items-center space-x-4">  

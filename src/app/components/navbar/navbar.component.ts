@@ -11,9 +11,12 @@ import { AuthService } from '../../services/auth.service';
   imports: [CommonModule]
 })
 export class NavbarComponent {
-  isDarkMode = false;
 
   constructor(private router: Router, private authService: AuthService) {
+  }
+
+  navigateTo(route: string): void {
+    this.router.navigate([`/${route}`]);
   }
 
   logout(): void {

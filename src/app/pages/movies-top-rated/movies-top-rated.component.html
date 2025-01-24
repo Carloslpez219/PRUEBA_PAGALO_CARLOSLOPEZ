@@ -1,1 +1,25 @@
-<p>movies-top-rated works!</p>
+<div class="min-h-screen bg-gray-900 text-white p-6">
+    <!-- Título llamativo -->
+    <h1 class="text-4xl font-bold text-indigo-500 dark:text-yellow-400 text-center mb-6">
+      ⭐ Top Rated Movies ⭐
+    </h1>
+  
+    <!-- Filtros -->
+    <div class="flex justify-start mt-4">
+      <input [(ngModel)]="searchQuery" (input)="searchMovies()" type="text"
+             placeholder="🔍 Buscar película..."
+             class="w-1/3 p-3 bg-gray-800 rounded-lg border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500">
+    </div>
+  
+    <!-- Listado de películas con MovieCardComponent -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 mt-6">
+      <app-movie-card *ngFor="let movie of topRatedMovies" [movie]="movie"></app-movie-card>
+      <div *ngIf="isLoading" class="animate-pulse bg-gray-700 h-[450px] w-full rounded-lg"></div>
+    </div>
+  
+    <!-- Cargando más películas -->
+    <div *ngIf="isLoading" class="flex justify-center mt-6">
+      <p class="text-gray-400">Cargando más películas...</p>
+    </div>
+  </div>
+  
