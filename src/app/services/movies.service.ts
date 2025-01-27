@@ -27,10 +27,10 @@ export class MoviesService {
   /**
    * Obtiene las películas mejor valoradas.
    */
-  getFeature() {
-    const query = '/movie/top_rated?include_video=true';
+  getFeature(page: number = 1){
+    const query = `/movie/top_rated?include_video=true&page=${page}`;
     return this.ejecutarQuery<RespuestaMDB>(query);
-  }
+  }  
 
   /**
    * Obtiene las películas próximas a estrenarse.
