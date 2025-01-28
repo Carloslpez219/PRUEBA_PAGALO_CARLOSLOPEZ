@@ -71,6 +71,36 @@
           🎥 Ver en IMDb
         </a>
       </div>
+      
     </div>
+
+
+    <div class="relative z-10 flex flex-col md:flex-row items-center md:items-start gap-8 max-w-6xl mx-auto py-10">
+        <!-- Sección de Reparto (Cast) -->
+        <div class="bg-slate-600 p-4 rounded-lg">
+            <div class="relative z-10 max-w-6xl mx-auto ">
+                <h3 class="text-2xl font-bold text-indigo-400">🎭 Reparto</h3>
+            
+                <!-- Carrusel de Actores -->
+                <div class="overflow-x-auto whitespace-nowrap mt-4">
+                <div class="flex space-x-4">
+                    <div *ngFor="let actor of cast" class="flex-shrink-0 w-36 text-center">
+                    <img *ngIf="actor.profile_path"
+                        [src]="'https://image.tmdb.org/t/p/w200' + actor.profile_path"
+                        [alt]="actor.name"
+                        class="rounded-lg shadow-lg w-36 h-52 object-cover">
+                    <div class="mt-2 text-gray-300">
+                        <p class="text-sm font-semibold">{{ actor.name }}</p>
+                        <p class="text-xs text-gray-400 italic">{{ actor.character }}</p>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
   </div>
+
+  
   

@@ -43,7 +43,7 @@ export class MovieDetailComponent implements OnInit {
 
     // Obtener reparto y equipo de producción
     this.moviesService.getDetallesCredits(id).subscribe(credits => {
-      this.cast = credits.cast.slice(0, 10); // Mostrar solo los primeros 10 actores
+      this.cast = credits.cast.slice(0, 12); // Mostrar solo los primeros 12 actores
       this.crew = credits.crew.filter(member => member.job === 'Director' || member.job === 'Writer'); // Filtrar equipo clave
     });
 
