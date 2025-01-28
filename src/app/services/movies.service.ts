@@ -89,7 +89,6 @@ export class MoviesService {
   private ejecutarQuery<T>(query: string) {
     query = url + query;
     query += `&api_key=${apiKey}&language=es&include_image_language=es`;
-    console.log(query); // Para debug
     return this.http.get<T>(query);
   }
 
@@ -98,7 +97,6 @@ export class MoviesService {
    */
   private ejecutarQueryRecomendations<T>(query: string) {
     query = `${environment.url}${query}?api_key=${environment.apiKey}&language=es&include_image_language=es`;
-    console.log('Fetching:', query);
     return this.http.get<T>(query);
   }
   

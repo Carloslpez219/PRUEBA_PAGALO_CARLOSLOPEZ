@@ -39,7 +39,6 @@ export class MovieDetailComponent implements OnInit {
 
     // Obtener detalles de la película
     this.moviesService.getDetallesPelicula(id).subscribe(movie => {
-      console.log(movie)
       this.movie = movie;
       this.isLoading = false;
     });
