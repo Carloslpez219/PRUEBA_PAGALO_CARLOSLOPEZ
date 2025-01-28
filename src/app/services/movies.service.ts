@@ -83,6 +83,10 @@ export class MoviesService {
     return this.ejecutarQuery<PeliculaDetalle>(`/movie/${id}/videos`);
   }
 
+  getRelatedMovies(movieId: string) {
+    return this.ejecutarQuery<RespuestaMDB>(`/movie/${movieId}/similar`);
+  }  
+
   /**
    * Método genérico para realizar consultas a la API.
    */
