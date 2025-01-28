@@ -17,9 +17,10 @@ export class MovieDetailComponent implements OnInit {
   cast: any[] = [];
   crew: any[] = [];
   recommendedMovies: any[] = [];
-  userRating: number = 0;
   isLoading = false;
   routeSub!: Subscription;
+  userRating: number | null = null;
+  hasVoted: boolean = false;
 
   constructor(private route: ActivatedRoute, private router: Router, private moviesService: MoviesService) {}
 
@@ -28,6 +29,7 @@ export class MovieDetailComponent implements OnInit {
       const movieId = params['id'];
       if (movieId) {
         this.loadMovieDetails(movieId);
+        this.checkUserVote(movieId);
       }
     });
   }
@@ -62,6 +64,22 @@ export class MovieDetailComponent implements OnInit {
 
   getSpokenLanguages(): string {
     return this.movie?.spoken_languages?.map((lang: { name: any; }) => lang.name).join(', ') || 'No disponible';
+  }
+
+  checkUserVote(movieId: string) {
+    const storedVote = localStorage.getItem(`vote_${movieId}`);
+    if (storedVote) {
+      this.userRating = parseInt(storedVote);
+      this.hasVoted = true;
+    }
+  }
+
+  voteForMovie(rating: number) {
+    if (!this.hasVoted) {
+      localStorage.setItem(`vote_${this.movie.id}`, rating.toString());
+      this.userRating = rating;
+      this.hasVoted = true;
+    }
   }
   
   ngOnDestroy() {
