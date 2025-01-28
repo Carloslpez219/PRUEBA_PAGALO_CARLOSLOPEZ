@@ -83,8 +83,8 @@ export class MoviesService {
     return this.ejecutarQuery<PeliculaDetalle>(`/movie/${id}/videos`);
   }
 
-  getRelatedMovies(movieId: string) {
-    return this.ejecutarQuery<RespuestaMDB>(`/movie/${movieId}/similar`);
+  getRecommendedMovies(id: string) {
+    return this.ejecutarQueryRecomendations<RespuestaMDB>(`/movie/${id}/recommendations`);
   }  
 
   /**
@@ -96,4 +96,11 @@ export class MoviesService {
     console.log(query); // Para debug
     return this.http.get<T>(query);
   }
+
+  private ejecutarQueryRecomendations<T>(query: string) {
+    query = `${environment.url}${query}?api_key=${environment.apiKey}&language=es&include_image_language=es`;
+    console.log('Fetching:', query);
+    return this.http.get<T>(query);
+  }
+  
 }

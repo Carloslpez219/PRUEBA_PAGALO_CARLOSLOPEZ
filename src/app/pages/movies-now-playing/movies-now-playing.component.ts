@@ -47,17 +47,6 @@ export class MoviesNowPlayingComponent implements OnInit {
     }
   }
 
-  filterByDate(): void {
-    if (this.startDate && this.endDate) {
-      this.moviesService.getFeature().subscribe((res: RespuestaMDB) => {
-        this.movies = res.results.filter(movie => {
-          const releaseDate = new Date(movie.release_date);
-          return releaseDate >= new Date(this.startDate) && releaseDate <= new Date(this.endDate);
-        });
-      });
-    }
-  }
-
   onMovieSelected(id: number): void {
     this.router.navigate(['/movie-detail', id]);
   }

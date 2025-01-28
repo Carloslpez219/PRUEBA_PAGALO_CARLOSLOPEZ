@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MoviesService } from '../../services/movies.service';
 import { MovieCardComponent } from '../../components/movie-card/movie-card.component';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-movies-top-rated',
@@ -18,7 +19,7 @@ export class MoviesTopRatedComponent implements OnInit {
   currentPage = 1;
   totalPages = 1;
 
-  constructor(private moviesService: MoviesService) {}
+  constructor(private moviesService: MoviesService, private router: Router) {}
 
   ngOnInit() {
     this.loadTopRatedMovies();
@@ -56,5 +57,9 @@ export class MoviesTopRatedComponent implements OnInit {
       this.topRatedMovies = response.results;
       this.isLoading = false;
     });
+  }
+
+  onMovieSelected(id: number): void {
+    this.router.navigate(['/movie-detail', id]);
   }
 }

@@ -120,7 +120,26 @@
             </div>
         </div>
     </div>
-  </div>
 
-  
+
+
+    <!-- Sección de Películas Recomendadas -->
+    <div class="relative z-10 max-w-fit mx-auto mt-10 bg-slate-950 p-10 rounded-2xl">
+        <h3 class="text-2xl font-bold text-indigo-400">🔮 Películas Recomendadas</h3>
+
+        <div class="overflow-x-auto whitespace-nowrap mt-4">
+            <div class="flex space-x-4">
+            <div *ngFor="let recommended of recommendedMovies" class="flex-shrink-0 w-40 text-center cursor-pointer" (click)="loadMovieDetails(recommended.id)">
+                <img *ngIf="recommended.poster_path"
+                    [src]="'https://image.tmdb.org/t/p/w200' + recommended.poster_path"
+                    [alt]="recommended.title"
+                    class="rounded-lg shadow-lg w-40 h-60 object-cover transition-transform hover:scale-105">
+                <p class="text-sm font-semibold text-white mt-2">{{ recommended.title }}</p>
+                <p class="text-xs text-gray-400">⭐ {{ recommended.vote_average.toFixed(1) }}</p>
+            </div>
+            </div>
+        </div>
+    </div>
+
+  </div>
   

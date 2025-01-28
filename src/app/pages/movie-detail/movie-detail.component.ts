@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MoviesService } from '../../services/movies.service';
 import { FormsModule } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-movie-detail',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './movie-detail.component.html',
   styleUrls: ['./movie-detail.component.css']
 })
@@ -15,10 +16,10 @@ export class MovieDetailComponent implements OnInit {
   movie: any;
   cast: any[] = [];
   crew: any[] = [];
-  trailerUrl: string = '';
-  relatedMovies: any[] = [];
+  recommendedMovies: any[] = [];
   userRating: number = 0;
   isLoading = false;
+  routeSub!: Subscription;
 
   constructor(private route: ActivatedRoute, private router: Router, private moviesService: MoviesService) {}
 
@@ -49,17 +50,9 @@ export class MovieDetailComponent implements OnInit {
       ); // Filtrar equipo clave
     });
 
-    // Obtener tráiler
-    this.moviesService.getVideo(id).subscribe(video => {
-      console.log(video);
-      if (video) {
-        this.trailerUrl = `https://www.youtube.com/embed/${video}`;
-      }
-    });
-
     // Obtener películas relacionadas
-    this.moviesService.getRelatedMovies(id).subscribe((response: { results: any[]; }) => {
-      this.relatedMovies = response.results.slice(0, 6); // Mostrar solo 6 relacionadas
+    this.moviesService.getRecommendedMovies(id).subscribe(response => {
+      this.recommendedMovies = response.results;
     });
   }
 
@@ -71,4 +64,9 @@ export class MovieDetailComponent implements OnInit {
     return this.movie?.spoken_languages?.map((lang: { name: any; }) => lang.name).join(', ') || 'No disponible';
   }
   
+  ngOnDestroy() {
+    if (this.routeSub) {
+      this.routeSub.unsubscribe();
+    }
+  }
 }
