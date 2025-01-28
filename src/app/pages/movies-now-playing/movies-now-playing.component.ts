@@ -5,6 +5,7 @@ import { RespuestaMDB, Pelicula } from '../../interfaces/interfaces';
 import { MovieCardComponent } from '../../components/movie-card/movie-card.component';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-movies-now-playing',
@@ -19,6 +20,7 @@ export class MoviesNowPlayingComponent implements OnInit {
   startDate: string = '';
   endDate: string = '';
   isLoading: boolean = false;
+  routeSub!: Subscription;
 
   constructor(private moviesService: MoviesService, private router: Router) {}
 
@@ -26,6 +28,7 @@ export class MoviesNowPlayingComponent implements OnInit {
     this.loadMovies();
   }
 
+  //Carga de peliculas
   loadMovies(): void {
     if (this.isLoading) return;
     this.isLoading = true;
@@ -51,10 +54,17 @@ export class MoviesNowPlayingComponent implements OnInit {
     this.router.navigate(['/movie-detail', id]);
   }
 
+  //Infinity scroll
   @HostListener('window:scroll', [])
   onScroll(): void {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 200) {
       this.loadMovies();
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.routeSub) {
+      this.routeSub.unsubscribe();
     }
   }
 }

@@ -10,6 +10,7 @@ import { Pelicula } from '../../interfaces/interfaces';
   imports: [CommonModule]
 })
 export class MovieCardComponent {
+  //Data para el componente
   @Input() movie!: Pelicula;
   @Output() movieClicked = new EventEmitter<number>();
 

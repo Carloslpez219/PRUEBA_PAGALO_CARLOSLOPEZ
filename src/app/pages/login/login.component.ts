@@ -18,6 +18,7 @@ export class LoginComponent {
 
   constructor(private authService: AuthService, private router: Router) {}
 
+  //Redireccion
   onLogin(): void {
     if (this.authService.login(this.email, this.password)) {
       this.router.navigate(['/movies-now-playing']);

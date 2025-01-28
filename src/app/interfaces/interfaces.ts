@@ -1,3 +1,5 @@
+//Interfaces para las respuestas de las APIS's
+
 export interface RespuestaMDB {
     page: number;
     total_results: number;

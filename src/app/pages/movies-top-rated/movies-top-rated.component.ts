@@ -25,6 +25,7 @@ export class MoviesTopRatedComponent implements OnInit {
     this.loadTopRatedMovies();
   }
 
+  //Carga de peliculas
   loadTopRatedMovies() {
     if (this.isLoading || this.currentPage > this.totalPages) return;
     this.isLoading = true;
@@ -37,6 +38,7 @@ export class MoviesTopRatedComponent implements OnInit {
     });
   }
 
+  //Infinity scroll
   @HostListener('window:scroll', [])
   onScroll(): void {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 500) {

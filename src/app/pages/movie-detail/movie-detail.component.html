@@ -102,7 +102,7 @@
             <div class="relative z-10 max-w-6xl mx-auto">
                 <h3 class="text-2xl font-bold text-indigo-400">🎭 Reparto</h3>
             
-                <!-- Carrusel de Actores -->
+                <!-- Actores -->
                 <div class="overflow-x-auto whitespace-nowrap mt-4">
                 <div class="flex space-x-4">
                     <div *ngFor="let actor of cast" class="flex-shrink-0 w-36 text-center">
@@ -122,25 +122,25 @@
     </div>
 
 
-<!-- Sección de Votación -->
-<div class="bg-slate-800 p-5 rounded-lg mt-6">
-  <h3 class="text-xl font-semibold text-indigo-400">⭐ Califica esta película</h3>
+    <!-- Sección de Votación -->
+    <div class="bg-slate-800 p-5 rounded-lg mt-6">
+      <h3 class="text-xl font-semibold text-indigo-400">⭐ Califica esta película</h3>
 
-  <div class="flex space-x-2 mt-3">
-    <button *ngFor="let star of [1,2,3,4,5,6,7,8,9,10]" 
-            (click)="voteForMovie(star)" 
-            [disabled]="hasVoted"
-            class="text-2xl transition transform hover:scale-110"
-            [class.text-yellow-400]="userRating && userRating >= star"
-            [class.text-gray-500]="!userRating || userRating < star">
-      ★
-    </button>
-  </div>
+      <div class="flex space-x-2 mt-3">
+        <button *ngFor="let star of [1,2,3,4,5,6,7,8,9,10]" 
+                (click)="voteForMovie(star)" 
+                [disabled]="hasVoted"
+                class="text-2xl transition transform hover:scale-110"
+                [class.text-yellow-400]="userRating && userRating >= star"
+                [class.text-gray-500]="!userRating || userRating < star">
+          ★
+        </button>
+      </div>
 
-  <p *ngIf="hasVoted" class="text-green-400 mt-2">
-    ✅ Gracias por tu voto. Calificaste esta película con {{ userRating }} estrellas.
-  </p>
-</div>
+      <p *ngIf="hasVoted" class="text-green-400 mt-2">
+        ✅ Gracias por tu voto. Calificaste esta película con {{ userRating }} estrellas.
+      </p>
+    </div>
 
 
     <!-- Sección de Películas Recomendadas -->

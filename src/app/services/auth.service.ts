@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
+  //Servicio utilizado para el login y autenticacion.
+
   private isAuthenticated = false;
   private user = { email: 'test@example.com', password: '123456' };
 

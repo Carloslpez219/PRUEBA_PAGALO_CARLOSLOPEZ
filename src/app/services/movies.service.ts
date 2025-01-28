@@ -77,12 +77,8 @@ export class MoviesService {
   }
 
   /**
-   * Obtiene los videos/trailers relacionados con una película.
+   * Obtiene las peliculas relacionados con una película.
    */
-  getVideo(id: string) {
-    return this.ejecutarQuery<PeliculaDetalle>(`/movie/${id}/videos`);
-  }
-
   getRecommendedMovies(id: string) {
     return this.ejecutarQueryRecomendations<RespuestaMDB>(`/movie/${id}/recommendations`);
   }  
@@ -97,6 +93,9 @@ export class MoviesService {
     return this.http.get<T>(query);
   }
 
+  /**
+   * Método genérico para realizar consultas a la API.
+   */
   private ejecutarQueryRecomendations<T>(query: string) {
     query = `${environment.url}${query}?api_key=${environment.apiKey}&language=es&include_image_language=es`;
     console.log('Fetching:', query);
